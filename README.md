@@ -110,7 +110,11 @@ For best results when uploading a puzzle photo:
 ---
 
 ## Notes
-
 - The app only supports standard **9×9 Sudoku** puzzles
 - Digits **0** (empty cells) are handled by detecting blank cells — do not write zeros in the puzzle
 - Temporary files in `solve/` and `digit_images/` are automatically cleared after each solve
+
+## Limitations
+- The sudoku solver sometimes can solve incorrectly and is not 100% accurate
+- While classifying confusion can happen between digits 6 and 9 or 4 and 7
+- Open to any suggestions about improving the accuracy of this Sudoku Solver. Thank you!
