@@ -1,7 +1,7 @@
 # 🧩 Sudoku Solver
 
 A computer vision-powered web app that detects, reads, and solves a 9×9 Sudoku puzzle from a photo — built with Streamlit, OpenCV, and a custom-trained CNN trained on the [Chars74K dataset](http://www.ee.surrey.ac.uk/CVSSP/demos/chars74k/) and the [MNIST dataset](https://keras.io/api/datasets/mnist/).
-
+The app is deployed here [Sudoku Solver](https://sudokusolver-kzjnw6uxjqnyhwaaebslmn.streamlit.app/)
 ---
 
 ## How It Works
