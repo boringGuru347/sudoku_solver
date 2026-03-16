@@ -64,8 +64,7 @@ Then open `http://localhost:8501` in your browser.
 ---
 
 ## Training the Model
-
-The digit recognition model is a CNN trained on a combination of MNIST (digits 1–9, zeros excluded) and a custom synthetic digit dataset.
+The digit recognition model is a CNN trained on a combination of MNIST and Chars74K dataset of synthetic digits (digits 1–9, zeros excluded).
 
 To retrain the model, open and run all cells in:
 
