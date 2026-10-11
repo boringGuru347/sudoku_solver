@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+data/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test, coverage, and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary image-processing output
+app/solve/*
+!app/solve/.gitkeep
+app/digit_images/*
+!app/digit_images/.gitkeep
+
+# Generated temporary images and data
+temp/
+tmp/
+*.tmp
+
+# Local datasets (uncomment if you do not want to version training data)
+# data/synthetic_digits/
+
+# Keep the trained model and benchmark Results/ tracked by default.

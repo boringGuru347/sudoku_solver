@@ -1,6 +1,14 @@
 import cv2
 import numpy as np
 import json
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+SOLVE_DIR = Path("solve")
+DIGIT_DIR = Path("digit_images")
+SOLVE_DIR.mkdir(parents=True, exist_ok=True)
+DIGIT_DIR.mkdir(parents=True, exist_ok=True)
+
 
 def get_grid_img(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -13,8 +21,9 @@ def get_grid_img(image):
     ROI = gray[max(0, y-5): min(h_img, y+h+5), max(0, x-5): min(w_img, x+w+5)]
     ROI_color = image[max(0, y-5): min(h_img, y+h+5), max(0, x-5): min(w_img, x+w+5)]  
 
-    cv2.imwrite('solve/grid.png', ROI)
-    cv2.imwrite('solve/grid_color.png', ROI_color)  
+    cv2.imwrite(str(SOLVE_DIR / 'grid.png'), ROI)
+    cv2.imwrite(str(SOLVE_DIR / 'grid_color.png'), ROI_color)
+
 
 def sort_cells_into_grid(image_plus_center, tolerance=15):
     cells = sorted(image_plus_center, key=lambda c: c[0][1])
@@ -84,8 +93,7 @@ def preprocess(image, iterations, size):
 
 def get_cells(image):
     get_grid_img(image)
-    grid_image = cv2.imread('solve/grid.png')
-    # grid_image = cv2.cvtColor(grid_image, cv2.COLOR_GRAY2BGR)  
+    grid_image = cv2.imread(str(SOLVE_DIR / 'grid.png'))
     for i in range(1, 9):
         if i == 1:
             size = (2, 2)
@@ -96,9 +104,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
         elif i == 2:
@@ -109,9 +117,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -123,9 +131,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -137,9 +145,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -151,9 +159,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -165,9 +173,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -179,9 +187,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
 
@@ -193,9 +201,9 @@ def get_cells(image):
                 sorted_cells = sort_cells_into_grid(image_plus_center, tolerance=15)
             
                 for idx, (center, cell_img) in enumerate(sorted_cells):
-                    cv2.imwrite(f'digit_images/cell_{idx}.png', cell_img)
+                    cv2.imwrite(str(DIGIT_DIR / f'cell_{idx}.png'), cell_img)
                     data[f"cell_{idx}"] = {"center": [center[0], center[1]]}
-                with open("solve/cells_data.json", "w") as f:
+                with open(SOLVE_DIR / "cells_data.json", "w") as f:
                     json.dump(data, f, indent=4)
                 break
         else:
