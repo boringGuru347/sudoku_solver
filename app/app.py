@@ -1,14 +1,23 @@
 
-import streamlit as st
+import sys
+from pathlib import Path
+import os
 import cv2
 import numpy as np
-import os
-from pathlib import Path
-from preprocess import get_cells
-from solver import solve_board
-
+import streamlit as st
 
 BASE_DIR = Path(__file__).resolve().parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+try:
+    from preprocess import get_cells
+    from solver import solve_board
+except ImportError:
+    from app.preprocess import get_cells
+    from app.solver import solve_board
+
+
 SOLVE_DIR = BASE_DIR / "solve"
 DIGIT_DIR = BASE_DIR / "digit_images"
 

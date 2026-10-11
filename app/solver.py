@@ -6,12 +6,23 @@ import json
 import time
 
 
-MODEL_PATH = "digit_model_centered.keras"
-SOLVE_DIR = Path("solve")
-DIGIT_DIR = Path("digit_images")
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "digit_model_centered.keras"
+SOLVE_DIR = BASE_DIR / "solve"
+DIGIT_DIR = BASE_DIR / "digit_images"
 CELLS_DATA_PATH = SOLVE_DIR / "cells_data.json"
 GRID_IMG_PATH = SOLVE_DIR / "grid_color.png"
-model = tf.keras.models.load_model(MODEL_PATH)
+
+SOLVE_DIR.mkdir(parents=True, exist_ok=True)
+DIGIT_DIR.mkdir(parents=True, exist_ok=True)
+
+if not MODEL_PATH.exists():
+    raise FileNotFoundError(
+        f"Model file not found at: {MODEL_PATH}. "
+        "Please ensure 'digit_model_centered.keras' is located in the 'app' directory."
+    )
+
+model = tf.keras.models.load_model(str(MODEL_PATH))
 IMG_SIZE = 28
 
 
@@ -207,6 +218,9 @@ def predict():
     matrix = []
     array = []
 
+    SOLVE_DIR.mkdir(parents=True, exist_ok=True)
+    DIGIT_DIR.mkdir(parents=True, exist_ok=True)
+
     if not CELLS_DATA_PATH.exists():
         raise FileNotFoundError(f"Missing prediction metadata: {CELLS_DATA_PATH}")
 
@@ -324,5 +338,5 @@ def solve_board(algorithm_name="backtracking"):
 
     clear_temp_folders()
     return img, elapsed_seconds
-
-predict()
+if __name__ == "__main__":
+    predict()

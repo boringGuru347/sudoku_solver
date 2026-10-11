@@ -2,7 +2,7 @@
 
 A computer vision-powered web application that detects, recognizes, and solves a 9×9 Sudoku puzzle from an uploaded image. Built using **Streamlit, OpenCV, and a custom-trained Convolutional Neural Network (CNN)** trained on the [Chars74K](http://www.ee.surrey.ac.uk/CVSSP/demos/chars74k/) and [MNIST](https://keras.io/api/datasets/mnist/) datasets.
 
-**[🚀 Try the Sudoku Solver](https://sudokusolver-kzjnw6uxjqnyhwaaebslmn.streamlit.app/)**
+**[🚀 Try the Sudoku Solver](https://sudoku-solver374.streamlit.app/)**
 
 ## ✨ Features
 

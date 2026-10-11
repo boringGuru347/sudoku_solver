@@ -4,13 +4,14 @@ import json
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-SOLVE_DIR = Path("solve")
-DIGIT_DIR = Path("digit_images")
+SOLVE_DIR = BASE_DIR / "solve"
+DIGIT_DIR = BASE_DIR / "digit_images"
 SOLVE_DIR.mkdir(parents=True, exist_ok=True)
 DIGIT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def get_grid_img(image):
+    SOLVE_DIR.mkdir(parents=True, exist_ok=True)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     edged = cv2.Canny(image=gray, threshold1=30, threshold2=200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -92,6 +93,8 @@ def preprocess(image, iterations, size):
 
 
 def get_cells(image):
+    SOLVE_DIR.mkdir(parents=True, exist_ok=True)
+    DIGIT_DIR.mkdir(parents=True, exist_ok=True)
     get_grid_img(image)
     grid_image = cv2.imread(str(SOLVE_DIR / 'grid.png'))
     for i in range(1, 9):
