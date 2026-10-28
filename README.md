@@ -8,7 +8,7 @@ A computer vision-powered web application that detects, recognizes, and solves a
 
 - **Sudoku Grid Detection:** Detects and extracts a Sudoku grid from an uploaded image using OpenCV.
 - **Cell Segmentation:** Divides the grid into 81 individual cells using contour detection and morphological preprocessing.
-- **Digit Recognition:** Uses a custom-trained CNN to recognize digits from 1 to 9 and identify empty cells.
+- **Digit Recognition:** Uses a lightweight custom-trained CNN to recognize digits from 1 to 9 and identify empty cells.
 - **Multiple Solving Algorithms:** Choose between Backtracking, Candidate Set, and Minimum Remaining Values (MRV).
 - **Performance Benchmarking:** Measures solver execution time and compares the performance of all three algorithms.
 - **Solution Visualization:** Overlays the solved Sudoku grid onto the original image.
@@ -156,12 +156,13 @@ The digit recognition model is trained using a combination of MNIST and Chars74K
 
 ### Model Architecture
 
-The CNN consists of the following layers:
+The model uses a clean, parameter-efficient 2D CNN architecture designed for fast inference and low memory footprint (~10k parameters):
 
-- Two `Conv2D` layers with 32 filters, Batch Normalization, Max Pooling, and Dropout.
-- Two `Conv2D` layers with 64 filters, Batch Normalization, Max Pooling, and Dropout.
-- A Dense layer with 256 units, Batch Normalization, and Dropout.
-- A Softmax output layer with 9 classes, corresponding to digits 1–9.
+- **Block 1:** `Conv2D` (16 filters, 3×3, ReLU, same padding) + Batch Normalization + Max Pooling (2×2) + Dropout (0.20).
+- **Block 2:** `Conv2D` (32 filters, 3×3, ReLU, same padding) + Batch Normalization + Max Pooling (2×2) + Dropout (0.20).
+- **Pooling Head:** `GlobalAveragePooling2D` to collapse spatial dimensions and prevent dense weight explosion.
+- **Dense Head:** Dense layer with 64 units, Batch Normalization, and Dropout (0.30).
+- **Output Layer:** Softmax output layer with 9 classes, corresponding to digits 1–9.
 
 ### Training Dataset
 
@@ -226,4 +227,4 @@ For more reliable grid detection and digit recognition:
 
 ## 🤝 Feedback
 
-Suggestions and contributions to improve image processing, digit recognition, solver performance, and application usability are welcome.
+Suggestions and contributions to improve image processing, digit recognition, solver performance, and application usability are welcome. 
